@@ -1,0 +1,15 @@
+{
+  "name": "glaze",
+  "description": "glaze Finance Subgraph",
+  "version": "1.0.0",
+  "repository": "git@github.com:glaze-finance/glaze-subgraph.git",
+  "author": "glaze Finance",
+  "license": "GPL-3.0-or-later",
+  "scripts": {
+    "codegen": "graph codegen subgraph.yaml",
+    "build": "graph build subgraph.yaml",
+    "create-local": "graph create glaze/blocks --node http://127.0.0.1:8020",
+    "deploy-local": "graph deploy glaze/blocks --debug --ipfs http://localhost:5001 --node http://127.0.0.1:8020",
+    "deploy": "graph deploy --node https://api.thegraph.com/deploy/ hercules-g/glaze"
+  }
+}

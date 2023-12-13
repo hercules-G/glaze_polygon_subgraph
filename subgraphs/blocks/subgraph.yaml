@@ -1,0 +1,25 @@
+specVersion: 0.0.4
+description: Glaze Finance is a decentralized protocol for automated token exchange on the Elastos Smart Chain (ESC).
+repository: https://github.com/hercules-G
+schema:
+  file: ./schema.graphql
+dataSources:
+  - kind: ethereum/contract
+    name: Migrations
+    network: mainnet
+    source:
+      address: '0xf4c9378363751837E84E91F52f97df4D02450f86'
+      abi: Migrations
+      startBlock: 18992510
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.5
+      language: wasm/assemblyscript
+      file: ./mappings/index.ts
+      entities:
+        - Block
+      abis:
+        - name: Migrations
+          file: ./abis/Migrations.json
+      blockHandlers:
+        - handler: handleBlock

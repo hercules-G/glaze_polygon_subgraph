@@ -1,0 +1,18 @@
+# Manual Glaze Staking 
+type ManualGlazeStaking @entity {
+  id: ID!
+
+  # stake amount
+  stakeAmount: BigInt!
+}
+
+# Manual Glaze Staking 
+type AutoGlazeStaking @entity {
+  id: ID!
+
+  # share amount
+  shareAmount: BigInt!
+  
+  # stake amount
+  stakeAmount: BigInt!
+}
