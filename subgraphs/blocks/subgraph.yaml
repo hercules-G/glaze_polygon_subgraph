@@ -1,6 +1,6 @@
-specVersion: 0.0.4
-description: Glaze Finance is a decentralized protocol for automated token exchange on the Elastos Smart Chain (ESC).
-repository: https://github.com/hercules-G
+specVersion: 0.0.2
+description: Glide Finance is a decentralized protocol for automated token exchange on the Elastos Smart Chain (ESC).
+repository: https://github.com/glide-finance
 schema:
   file: ./schema.graphql
 dataSources:
@@ -8,12 +8,12 @@ dataSources:
     name: Migrations
     network: mainnet
     source:
-      address: '0xf4c9378363751837E84E91F52f97df4D02450f86'
+      address: '0x95B7f291800F5264F91afa1E92B99E123fe98Ab3'
       abi: Migrations
-      startBlock: 18992510
+      startBlock: 8163294
     mapping:
       kind: ethereum/events
-      apiVersion: 0.0.5
+      apiVersion: 0.0.4
       language: wasm/assemblyscript
       file: ./mappings/index.ts
       entities:

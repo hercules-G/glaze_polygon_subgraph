@@ -1,13 +1,13 @@
-# Manual Glaze Staking 
-type ManualGlazeStaking @entity {
+# Manual Glide Staking 
+type ManualGlideStaking @entity {
   id: ID!
 
   # stake amount
   stakeAmount: BigInt!
 }
 
-# Manual Glaze Staking 
-type AutoGlazeStaking @entity {
+# Manual Glide Staking 
+type AutoGlideStaking @entity {
   id: ID!
 
   # share amount

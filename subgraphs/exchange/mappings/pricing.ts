@@ -3,12 +3,12 @@ import { BigDecimal, Address } from "@graphprotocol/graph-ts/index";
 import { Pair, Token, Bundle } from "../generated/schema";
 import { ZERO_BD, factoryContract, ADDRESS_ZERO, ONE_BD } from "./utils";
 
-let WPLS_ADDRESS = "0xA1077a294dDE1B09bB078844df40758a5D0f9a27";
-let USDC_WPLS_PAIR = "0xf392a5dFbc89ED470D8870B5A41519948BB64938"; 
+let WELA_ADDRESS = "0x517e9e5d46c1ea8ab6f78677d6114ef47f71f6c4";
+let USDC_WELA_PAIR = "0x6077b7990d3d0dfb5a50f1d207f67ac5955b999d"; 
 
 export function getElaPriceInUSD(): BigDecimal {
   // fetch eth prices for each stablecoin
-  let usdcPair = Pair.load(USDC_WPLS_PAIR); // usdc is token1
+  let usdcPair = Pair.load(USDC_WELA_PAIR); // usdc is token1
   
   if (usdcPair !== null) {
     return usdcPair.token1Price;
@@ -19,11 +19,13 @@ export function getElaPriceInUSD(): BigDecimal {
 
 // token where amounts should contribute to tracked volume and liquidity
 let WHITELIST: string[] = [
-  "0xA1077a294dDE1B09bB078844df40758a5D0f9a27", // WPLS
-  "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2", // ETH
-  "0x15d38573d2feeb82e7ad5187ab8c1d52810b1f07", // USDC
-  "0x4C085dE8510D9fad1166b805603fd91E550bb5CE", // GLAZE HUSD HT FilDA
-
+  "0x517e9e5d46c1ea8ab6f78677d6114ef47f71f6c4", // WELA
+  "0x802c3e839e4fdb10af583e3e759239ec7703501e", // ETH
+  "0xa06be0f5950781ce28d965e5efc6996e88a8c141", // USDC
+  "0xb9ae03e3320235d3a8ae537f87ff8529b445b590", // FilDA
+  "0xd39ec832ff1caafab2729c76ddeac967abca8f27", // GLIDE
+  "0xeceefc50f9aacf0795586ed90a8b9e24f55ce3f3", // HT
+  "0xf9ca2ea3b1024c0db31adb224b407441becc18bb"  // HUSD
 ];
 
 // minimum liquidity for price to get tracked
@@ -34,7 +36,7 @@ let MINIMUM_LIQUIDITY_THRESHOLD_ELA = BigDecimal.fromString("10");
  * @todo update to be derived ELA (add stablecoin estimates)
  **/
 export function findElaPerToken(token: Token): BigDecimal {
-  if (token.id == WPLS_ADDRESS) {
+  if (token.id == WELA_ADDRESS) {
     return ONE_BD;
   }
   // loop through whitelist and check if paired with any
