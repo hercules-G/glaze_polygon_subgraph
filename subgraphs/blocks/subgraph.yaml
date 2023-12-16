@@ -1,6 +1,6 @@
 specVersion: 0.0.2
-description: Glide Finance is a decentralized protocol for automated token exchange on the Elastos Smart Chain (ESC).
-repository: https://github.com/glide-finance
+description: Glaze Finance is a decentralized protocol for automated token exchange on the Elastos Smart Chain (ESC).
+repository: https://github.com/glaze-finance
 schema:
   file: ./schema.graphql
 dataSources:

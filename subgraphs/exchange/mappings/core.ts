@@ -3,7 +3,7 @@ import { BigInt, BigDecimal, store } from "@graphprotocol/graph-ts";
 import {
   Pair,
   Token,
-  GlideFactory,
+  GlazeFactory,
   Transaction,
   Mint as MintEvent,
   Burn as BurnEvent,
@@ -11,7 +11,7 @@ import {
   Bundle,
 } from "../generated/schema";
 import { Mint, Burn, Swap, Transfer, Sync } from "../generated/templates/Pair/Pair";
-import { updatePairDayData, updateTokenDayData, updateGlideDayData, updatePairHourData } from "./dayUpdates";
+import { updatePairDayData, updateTokenDayData, updateGlazeDayData, updatePairHourData } from "./dayUpdates";
 import { getElaPriceInUSD, findElaPerToken, getTrackedVolumeUSD, getTrackedLiquidityUSD } from "./pricing";
 import { convertTokenToDecimal, ADDRESS_ZERO, FACTORY_ADDRESS, ONE_BI, ZERO_BD, BI_18 } from "./utils";
 import { log } from '@graphprotocol/graph-ts'
@@ -176,10 +176,10 @@ export function handleSync(event: Sync): void {
   let pair = Pair.load(event.address.toHex());
   let token0 = Token.load(pair.token0);
   let token1 = Token.load(pair.token1);
-  let glide = GlideFactory.load(FACTORY_ADDRESS);
+  let glaze = GlazeFactory.load(FACTORY_ADDRESS);
 
   // reset factory liquidity by subtracting only tracked liquidity
-  glide.totalLiquidityELA = glide.totalLiquidityELA.minus(pair.trackedReserveELA as BigDecimal);
+  glaze.totalLiquidityELA = glaze.totalLiquidityELA.minus(pair.trackedReserveELA as BigDecimal);
 
   // reset token total liquidity amounts
   token0.totalLiquidity = token0.totalLiquidity.minus(pair.reserve0);
@@ -229,8 +229,8 @@ export function handleSync(event: Sync): void {
   pair.reserveUSD = pair.reserveELA.times(bundle.elaPrice);
 
   // use tracked amounts globally
-  glide.totalLiquidityELA = glide.totalLiquidityELA.plus(trackedLiquidityELA);
-  glide.totalLiquidityUSD = glide.totalLiquidityELA.times(bundle.elaPrice);
+  glaze.totalLiquidityELA = glaze.totalLiquidityELA.plus(trackedLiquidityELA);
+  glaze.totalLiquidityUSD = glaze.totalLiquidityELA.times(bundle.elaPrice);
 
   // now correctly set liquidity amounts for each token
   token0.totalLiquidity = token0.totalLiquidity.plus(pair.reserve0);
@@ -238,7 +238,7 @@ export function handleSync(event: Sync): void {
 
   // save entities
   pair.save();
-  glide.save();
+  glaze.save();
   token0.save();
   token1.save();
 }
@@ -249,7 +249,7 @@ export function handleMint(event: Mint): void {
   let mint = MintEvent.load(mints[mints.length - 1]);
 
   let pair = Pair.load(event.address.toHex());
-  let glide = GlideFactory.load(FACTORY_ADDRESS);
+  let glaze = GlazeFactory.load(FACTORY_ADDRESS);
 
   let token0 = Token.load(pair.token0);
   let token1 = Token.load(pair.token1);
@@ -271,13 +271,13 @@ export function handleMint(event: Mint): void {
 
   // update txn counts
   pair.totalTransactions = pair.totalTransactions.plus(ONE_BI);
-  glide.totalTransactions = glide.totalTransactions.plus(ONE_BI);
+  glaze.totalTransactions = glaze.totalTransactions.plus(ONE_BI);
 
   // save entities
   token0.save();
   token1.save();
   pair.save();
-  glide.save();
+  glaze.save();
 
   mint.sender = event.params.sender;
   mint.amount0 = token0Amount as BigDecimal;
@@ -288,7 +288,7 @@ export function handleMint(event: Mint): void {
 
   updatePairDayData(event);
   updatePairHourData(event);
-  updateGlideDayData(event);
+  updateGlazeDayData(event);
   updateTokenDayData(token0 as Token, event);
   updateTokenDayData(token1 as Token, event);
 }
@@ -303,7 +303,7 @@ export function handleBurn(event: Burn): void {
   let burn = BurnEvent.load(burns[burns.length - 1]);
 
   let pair = Pair.load(event.address.toHex());
-  let glide = GlideFactory.load(FACTORY_ADDRESS);
+  let glaze = GlazeFactory.load(FACTORY_ADDRESS);
 
   //update token info
   let token0 = Token.load(pair.token0);
@@ -323,14 +323,14 @@ export function handleBurn(event: Burn): void {
     .times(bundle.elaPrice);
 
   // update txn counts
-  glide.totalTransactions = glide.totalTransactions.plus(ONE_BI);
+  glaze.totalTransactions = glaze.totalTransactions.plus(ONE_BI);
   pair.totalTransactions = pair.totalTransactions.plus(ONE_BI);
 
   // update global counter and save
   token0.save();
   token1.save();
   pair.save();
-  glide.save();
+  glaze.save();
 
   // update burn
   // burn.sender = event.params.sender
@@ -343,7 +343,7 @@ export function handleBurn(event: Burn): void {
 
   updatePairDayData(event);
   updatePairHourData(event);
-  updateGlideDayData(event);
+  updateGlazeDayData(event);
   updateTokenDayData(token0 as Token, event);
   updateTokenDayData(token1 as Token, event);
 }
@@ -416,17 +416,17 @@ export function handleSwap(event: Swap): void {
   pair.save();
 
   // update global values, only used tracked amounts for volume
-  let glide = GlideFactory.load(FACTORY_ADDRESS);
-  glide.totalVolumeUSD = glide.totalVolumeUSD.plus(trackedAmountUSD);
-  glide.totalVolumeELA = glide.totalVolumeELA.plus(trackedAmountELA);
-  glide.untrackedVolumeUSD = glide.untrackedVolumeUSD.plus(derivedAmountUSD);
-  glide.totalTransactions = glide.totalTransactions.plus(ONE_BI);
+  let glaze = GlazeFactory.load(FACTORY_ADDRESS);
+  glaze.totalVolumeUSD = glaze.totalVolumeUSD.plus(trackedAmountUSD);
+  glaze.totalVolumeELA = glaze.totalVolumeELA.plus(trackedAmountELA);
+  glaze.untrackedVolumeUSD = glaze.untrackedVolumeUSD.plus(derivedAmountUSD);
+  glaze.totalTransactions = glaze.totalTransactions.plus(ONE_BI);
 
   // save entities
   pair.save();
   token0.save();
   token1.save();
-  glide.save();
+  glaze.save();
 
   let transaction = Transaction.load(event.transaction.hash.toHex());
   if (transaction === null) {
@@ -470,15 +470,15 @@ export function handleSwap(event: Swap): void {
   // update day entities
   let pairDayData = updatePairDayData(event);
   let pairHourData = updatePairHourData(event);
-  let glideDayData = updateGlideDayData(event);
+  let glazeDayData = updateGlazeDayData(event);
   let token0DayData = updateTokenDayData(token0 as Token, event);
   let token1DayData = updateTokenDayData(token1 as Token, event);
 
   // swap specific updating
-  glideDayData.dailyVolumeUSD = glideDayData.dailyVolumeUSD.plus(trackedAmountUSD);
-  glideDayData.dailyVolumeELA = glideDayData.dailyVolumeELA.plus(trackedAmountELA);
-  glideDayData.dailyVolumeUntracked = glideDayData.dailyVolumeUntracked.plus(derivedAmountUSD);
-  glideDayData.save();
+  glazeDayData.dailyVolumeUSD = glazeDayData.dailyVolumeUSD.plus(trackedAmountUSD);
+  glazeDayData.dailyVolumeELA = glazeDayData.dailyVolumeELA.plus(trackedAmountELA);
+  glazeDayData.dailyVolumeUntracked = glazeDayData.dailyVolumeUntracked.plus(derivedAmountUSD);
+  glazeDayData.save();
 
   // swap specific updating for pair
   pairDayData.dailyVolumeToken0 = pairDayData.dailyVolumeToken0.plus(amount0Total);

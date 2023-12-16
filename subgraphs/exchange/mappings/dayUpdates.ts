@@ -1,31 +1,31 @@
 /* eslint-disable prefer-const */
 import { PairHourData } from "../generated/schema";
 import { BigInt, BigDecimal, ethereum } from "@graphprotocol/graph-ts";
-import { Pair, Bundle, Token, GlideFactory, GlideDayData, PairDayData, TokenDayData } from "../generated/schema";
+import { Pair, Bundle, Token, GlazeFactory, GlazeDayData, PairDayData, TokenDayData } from "../generated/schema";
 import { ONE_BI, ZERO_BD, ZERO_BI, FACTORY_ADDRESS } from "./utils";
 
-export function updateGlideDayData(event: ethereum.Event): GlideDayData {
-  let glide = GlideFactory.load(FACTORY_ADDRESS);
+export function updateGlazeDayData(event: ethereum.Event): GlazeDayData {
+  let glaze = GlazeFactory.load(FACTORY_ADDRESS);
   let timestamp = event.block.timestamp.toI32();
   let dayID = timestamp / 86400;
   let dayStartTimestamp = dayID * 86400;
 
-  let glideDayData = GlideDayData.load(dayID.toString());
-  if (glideDayData === null) {
-    glideDayData = new GlideDayData(dayID.toString());
-    glideDayData.date = dayStartTimestamp;
-    glideDayData.dailyVolumeUSD = ZERO_BD;
-    glideDayData.dailyVolumeELA = ZERO_BD;
-    glideDayData.totalVolumeUSD = ZERO_BD;
-    glideDayData.totalVolumeELA = ZERO_BD;
-    glideDayData.dailyVolumeUntracked = ZERO_BD;
+  let glazeDayData = GlazeDayData.load(dayID.toString());
+  if (glazeDayData === null) {
+    glazeDayData = new GlazeDayData(dayID.toString());
+    glazeDayData.date = dayStartTimestamp;
+    glazeDayData.dailyVolumeUSD = ZERO_BD;
+    glazeDayData.dailyVolumeELA = ZERO_BD;
+    glazeDayData.totalVolumeUSD = ZERO_BD;
+    glazeDayData.totalVolumeELA = ZERO_BD;
+    glazeDayData.dailyVolumeUntracked = ZERO_BD;
   }
-  glideDayData.totalLiquidityUSD = glide.totalLiquidityUSD;
-  glideDayData.totalLiquidityELA = glide.totalLiquidityELA;
-  glideDayData.totalTransactions = glide.totalTransactions;
-  glideDayData.save();
+  glazeDayData.totalLiquidityUSD = glaze.totalLiquidityUSD;
+  glazeDayData.totalLiquidityELA = glaze.totalLiquidityELA;
+  glazeDayData.totalTransactions = glaze.totalTransactions;
+  glazeDayData.save();
 
-  return glideDayData as GlideDayData;
+  return glazeDayData as GlazeDayData;
 }
 
 export function updatePairDayData(event: ethereum.Event): PairDayData {

@@ -2,8 +2,8 @@
     {
       "inputs": [
         {
-          "internalType": "contract GlideToken",
-          "name": "_glide",
+          "internalType": "contract GlazeToken",
+          "name": "_glaze",
           "type": "address"
         },
         {
@@ -23,7 +23,7 @@
         },
         {
           "internalType": "uint256",
-          "name": "_glidePerBlock",
+          "name": "_glazePerBlock",
           "type": "uint256"
         },
         {
@@ -33,7 +33,7 @@
         },
         {
           "internalType": "address",
-          "name": "_glideTransferOwner",
+          "name": "_glazeTransferOwner",
           "type": "address"
         }
       ],
@@ -121,11 +121,11 @@
         {
           "indexed": true,
           "internalType": "address",
-          "name": "glideTransferOwner",
+          "name": "glazeTransferOwner",
           "type": "address"
         }
       ],
-      "name": "SetGlideTransferOwner",
+      "name": "SetGlazeTransferOwner",
       "type": "event"
     },
     {
@@ -144,7 +144,7 @@
           "type": "address"
         }
       ],
-      "name": "TransferGlideOwnership",
+      "name": "TransferGlazeOwnership",
       "type": "event"
     },
     {
@@ -159,7 +159,7 @@
         {
           "indexed": false,
           "internalType": "uint256",
-          "name": "glidePerBlock",
+          "name": "glazePerBlock",
           "type": "uint256"
         }
       ],
@@ -249,10 +249,10 @@
     },
     {
       "inputs": [],
-      "name": "glide",
+      "name": "glaze",
       "outputs": [
         {
-          "internalType": "contract GlideToken",
+          "internalType": "contract GlazeToken",
           "name": "",
           "type": "address"
         }
@@ -263,7 +263,7 @@
     },
     {
       "inputs": [],
-      "name": "glidePerBlock",
+      "name": "glazePerBlock",
       "outputs": [
         {
           "internalType": "uint256",
@@ -277,7 +277,7 @@
     },
     {
       "inputs": [],
-      "name": "glideTransferOwner",
+      "name": "glazeTransferOwner",
       "outputs": [
         {
           "internalType": "address",
@@ -350,7 +350,7 @@
         },
         {
           "internalType": "uint256",
-          "name": "accGlidePerShare",
+          "name": "accGlazePerShare",
           "type": "uint256"
         },
         {
@@ -598,7 +598,7 @@
           "type": "uint256"
         }
       ],
-      "name": "getTotalGlideReward",
+      "name": "getTotalGlazeReward",
       "outputs": [
         {
           "internalType": "uint256",
@@ -618,7 +618,7 @@
           "type": "uint256"
         }
       ],
-      "name": "getGlideReward",
+      "name": "getGlazeReward",
       "outputs": [
         {
           "internalType": "uint256",
@@ -689,7 +689,7 @@
           "type": "address"
         }
       ],
-      "name": "pendingGlide",
+      "name": "pendingGlaze",
       "outputs": [
         {
           "internalType": "uint256",
@@ -826,7 +826,7 @@
       "inputs": [
         {
           "internalType": "uint256",
-          "name": "_glidePerBlock",
+          "name": "_glazePerBlock",
           "type": "uint256"
         }
       ],
@@ -839,11 +839,11 @@
       "inputs": [
         {
           "internalType": "address",
-          "name": "_glideTransferOwner",
+          "name": "_glazeTransferOwner",
           "type": "address"
         }
       ],
-      "name": "setGlideTransferOwner",
+      "name": "setGlazeTransferOwner",
       "outputs": [],
       "stateMutability": "nonpayable",
       "type": "function"
@@ -856,7 +856,7 @@
           "type": "address"
         }
       ],
-      "name": "transferGlideOwnership",
+      "name": "transferGlazeOwnership",
       "outputs": [],
       "stateMutability": "nonpayable",
       "type": "function"

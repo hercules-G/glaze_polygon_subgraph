@@ -1,5 +1,5 @@
 /* eslint-disable prefer-const */
-import { GlideFactory, Pair, Token, Bundle } from "../generated/schema";
+import { GlazeFactory, Pair, Token, Bundle } from "../generated/schema";
 import { Pair as PairTemplate } from "../generated/templates";
 import { PairCreated } from "../generated/Factory/Factory";
 import {
@@ -13,9 +13,9 @@ import {
 } from "./utils";
 
 export function handlePairCreated(event: PairCreated): void {
-  let factory = GlideFactory.load(FACTORY_ADDRESS);
+  let factory = GlazeFactory.load(FACTORY_ADDRESS);
   if (factory === null) {
-    factory = new GlideFactory(FACTORY_ADDRESS);
+    factory = new GlazeFactory(FACTORY_ADDRESS);
     factory.totalPairs = ZERO_BI;
     factory.totalTransactions = ZERO_BI;
     factory.totalVolumeELA = ZERO_BD;

@@ -1,10 +1,10 @@
 {
-  "name": "glide-subgraph",
-  "description": "Glide Finance Subgraph",
+  "name": "glaze-subgraph",
+  "description": "Glaze Finance Subgraph",
   "version": "1.0.0",
   "private": true,
-  "repository": "git@github.com:glide-finance/glide-subgraph.git",
-  "author": "Glide Finance",
+  "repository": "git@github.com:glaze-finance/glaze-subgraph.git",
+  "author": "Glaze Finance",
   "license": "GPL-3.0-or-later",
   "workspaces": [
     "subgraphs/**/*"

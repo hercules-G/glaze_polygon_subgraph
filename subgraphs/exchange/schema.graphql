@@ -1,4 +1,4 @@
-type GlideFactory @entity {
+type GlazeFactory @entity {
   id: ID!
 
   "Total of pairs"
@@ -189,7 +189,7 @@ type Swap @entity {
   amountUSD: BigDecimal!
 }
 
-type GlideDayData @entity {
+type GlazeDayData @entity {
   id: ID! # timestamp rounded to current day by dividing by 86400
 
   date: Int!

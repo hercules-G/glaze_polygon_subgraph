@@ -4,7 +4,7 @@ import { ERC20 } from "../../generated/Factory/ERC20";
 import { Factory as FactoryContract } from "../../generated/templates/Pair/Factory";
 
 export let ADDRESS_ZERO = "0x0000000000000000000000000000000000000000";
-export let FACTORY_ADDRESS = "0xaAbe38153b25f0d4b2bDa620f67059B3a45334e5";
+export let FACTORY_ADDRESS = "0xB840057756cf4D41248d2e4bF45959308AC973F2";
 
 export let ZERO_BI = BigInt.fromI32(0);
 export let ONE_BI = BigInt.fromI32(1);

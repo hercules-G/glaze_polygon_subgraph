@@ -1,16 +1,16 @@
 {
-    "name": "glide-staking",
-    "description": "Glide Finance Subgraph",
+    "name": "glaze-staking",
+    "description": "Glaze Finance Subgraph",
     "version": "1.0.0",
-    "repository": "git@github.com:glide-finance/glide-subgraph.git",
-    "author": "Glide Finance",
+    "repository": "git@github.com:glaze-finance/glaze-subgraph.git",
+    "author": "Glaze Finance",
     "license": "GPL-3.0-or-later",
     "scripts": {
       "codegen": "graph codegen subgraph.yaml",
       "build": "graph build subgraph.yaml",
-      "create-local": "graph create glide/glide-staking --node http://127.0.0.1:8020",
-      "deploy-local": "graph deploy glide/glide-staking --debug --ipfs http://localhost:5001 --node http://127.0.0.1:8020",
-      "deploy": "graph deploy --product hosted-service --node https://api.thegraph.com/deploy/ --ipfs https://api.thegraph.com/ipfs/ glide/glide-staking subgraph.yaml"
+      "create-local": "graph create glaze/glaze-staking --node http://127.0.0.1:8020",
+      "deploy-local": "graph deploy glaze/glaze-staking --debug --ipfs http://localhost:5001 --node http://127.0.0.1:8020",
+      "deploy": "graph deploy --product hosted-service --node https://api.thegraph.com/deploy/ --ipfs https://api.thegraph.com/ipfs/ glaze/glaze-staking subgraph.yaml"
     }
   }
   

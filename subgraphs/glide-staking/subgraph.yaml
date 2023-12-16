@@ -1,6 +1,6 @@
 specVersion: 0.0.2
-description: Glide Finance is a decentralized protocol for automated token exchange on the Elastos Smart Chain (ESC).
-repository: https://github.com/glide-finance
+description: Glaze Finance is a decentralized protocol for automated token exchange on the Elastos Smart Chain (ESC).
+repository: https://github.com/glaze-finance
 schema:
   file: ./schema.graphql
 dataSources:
@@ -17,7 +17,7 @@ dataSources:
       language: wasm/assemblyscript
       file: ./mappings/manualStaking.ts
       entities:
-        - ManualGlideStaking
+        - ManualGlazeStaking
       abis:
         - name: MasterChef
           file: ./abis/MasterChef.json
@@ -29,11 +29,11 @@ dataSources:
         - event: EmergencyWithdraw(indexed address,indexed uint256,uint256)
           handler: handleEmergencyWithdraw
   - kind: ethereum/contract
-    name: GlideVault
+    name: GlazeVault
     network: mainnet
     source:
       address: '0xBe224bb2EFe1aE7437Ab428557d3054E63033dA9'
-      abi: GlideVault
+      abi: GlazeVault
       startBlock: 9160231
     mapping:
       kind: ethereum/events
@@ -41,10 +41,10 @@ dataSources:
       language: wasm/assemblyscript
       file: ./mappings/autoStaking.ts
       entities:
-        - AutoGlideStaking
+        - AutoGlazeStaking
       abis:
-        - name: GlideVault
-          file: ./abis/GlideVault.json
+        - name: GlazeVault
+          file: ./abis/GlazeVault.json
       eventHandlers:
         - event: Deposit(indexed address,uint256,uint256,uint256)
           handler: handleDeposit

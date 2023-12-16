@@ -420,7 +420,7 @@
           },
           {
             "internalType": "uint256",
-            "name": "glideAtLastUserAction",
+            "name": "glazeAtLastUserAction",
             "type": "uint256"
           },
           {
@@ -602,7 +602,7 @@
       },
       {
         "inputs": [],
-        "name": "calculateHarvestGlideRewards",
+        "name": "calculateHarvestGlazeRewards",
         "outputs": [
           {
             "internalType": "uint256",
@@ -616,7 +616,7 @@
       },
       {
         "inputs": [],
-        "name": "calculateTotalPendingGlideRewards",
+        "name": "calculateTotalPendingGlazeRewards",
         "outputs": [
           {
             "internalType": "uint256",

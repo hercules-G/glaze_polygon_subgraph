@@ -1,6 +1,6 @@
-# Glide Finance Subgraph
+# Glaze Finance Subgraph
 
-TheGraph exposes a GraphQL endpoint to query the events and entities within the Elastos Smart Chain and Glide Finance ecosystem.
+TheGraph exposes a GraphQL endpoint to query the events and entities within the Elastos Smart Chain and Glaze Finance ecosystem.
 
 Currently, there are multiple subgraphs, but additional subgraphs can be added to this repository, following the current architecture.
 
@@ -8,15 +8,15 @@ Currently, there are multiple subgraphs, but additional subgraphs can be added t
 
 1. **[Blocks]**: Tracks all blocks on the Elastos Smart Chain (ESC).
 
-2. **[Exchange]**: Tracks all Glide Exchange data with price, volume, liquidity, ...
+2. **[Exchange]**: Tracks all Glaze Exchange data with price, volume, liquidity, ...
 
-2. **[Glide-Staking]**: Tracks all manual and auto Glide stake deposits and withdraws 
+2. **[Glaze-Staking]**: Tracks all manual and auto Glaze stake deposits and withdraws 
 
-4. **[Pairs]**: Tracks all Glide Pairs and Tokens.
+4. **[Pairs]**: Tracks all Glaze Pairs and Tokens.
 
-5. **[SmartChef]**: Tracks all Glide SmartChef (a.k.a. Sugar Pools) with tokens and rewards.
+5. **[SmartChef]**: Tracks all Glaze SmartChef (a.k.a. Sugar Pools) with tokens and rewards.
 
-6. **[Timelock])**: Tracks all Glide Timelock queued, executed, and cancelled transactions.
+6. **[Timelock])**: Tracks all Glaze Timelock queued, executed, and cancelled transactions.
 
 ## Dependencies
 
